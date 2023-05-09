@@ -9,7 +9,7 @@
       </IonToolbar>
     </IonHeader>
     <IonContent class="ion-padding" :fullscreen="true">
-      <div class="grid grid-cols-2 grid-gap">
+      <div class="grid grid-cols-1 md:grid-cols-2 grid-gap">
         <div v-for="event in events" :key="event.id">
           <IonCard @click="openRaffle(event.id)">
             <IonCardHeader>
