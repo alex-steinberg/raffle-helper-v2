@@ -46,8 +46,6 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { Database } from "~~/types/database.types";
-import { toastController } from "@ionic/vue";
-import { watchPostEffect } from "@vue/runtime-core";
 
 const router = useIonRouter();
 

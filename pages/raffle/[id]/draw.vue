@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { useRoute } from "vue-router";
 import { drawWinners, Entry } from "~/common/helpers";
 import { Database } from "~~/types/database.types";

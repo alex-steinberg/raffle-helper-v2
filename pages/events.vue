@@ -32,7 +32,7 @@
 </template>
 <script setup lang="ts">
 import { Database } from "~~/types/database.types";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 const client = useSupabaseClient<Database>();
 const router = useIonRouter();
