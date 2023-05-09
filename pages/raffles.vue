@@ -3,16 +3,16 @@
     <IonHeader>
       <IonToolbar>
         <IonButtons slot="start">
-          <IonBackButton> </IonBackButton>
+          <IonMenuButton />
         </IonButtons>
-        <IonTitle>About Page</IonTitle>
+        <IonTitle>Raffles</IonTitle>
       </IonToolbar>
     </IonHeader>
-    <IonContent> </IonContent>
+    <IonContent class="ion-padding" :fullscreen="true"> Raffles </IonContent>
   </IonPage>
 </template>
 <script setup lang="ts">
 definePageMeta({
-  middleware:['auth']
+  middleware: ["auth"],
 });
 </script>

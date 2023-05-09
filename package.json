@@ -4,17 +4,26 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "start": "npm run dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "ionic:build": "npm run generate",
-    "ionic:serve": "npm run dev"
+    "ionic:serve": "npm run dev",
+    "generate:types": "npx supabase gen types typescript --project-id 'eqqejqiisxnmxtjigenf' --schema public > types/database.types.ts",
+    "test": "vitest"
   },
   "devDependencies": {
     "@nuxtjs/ionic": "^0.10.0",
     "@nuxtjs/supabase": "^0.3.5",
     "@nuxtjs/tailwindcss": "^6.6.6",
-    "nuxt": "^3.4.1"
+    "@vitejs/plugin-vue": "^4.2.1",
+    "@vue/test-utils": "^2.3.2",
+    "jsdom": "^22.0.0",
+    "nuxt": "^3.4.1",
+    "prettier": "^2.8.8",
+    "supabase": "^1.52.2",
+    "vitest": "^0.31.0"
   },
   "dependencies": {
     "@capacitor/app": "4.1.1",
@@ -23,7 +32,8 @@
     "@capacitor/haptics": "4.1.0",
     "@capacitor/ios": "4.7.3",
     "@capacitor/keyboard": "4.1.1",
-    "@capacitor/status-bar": "4.1.1"
+    "@capacitor/status-bar": "4.1.1",
+    "dayjs": "^1.11.7"
   },
   "version": "0.0.0"
 }

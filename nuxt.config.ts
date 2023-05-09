@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   ssr: false,
   modules: ["@nuxtjs/ionic", "@nuxtjs/tailwindcss", "@nuxtjs/supabase"],
   ionic: {
+    config: {
+      mode: "ios",
+    },
     css: {
       utilities: true,
     },
