@@ -1,10 +1,10 @@
 export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json }
-  | Json[]
+    | string
+    | number
+    | boolean
+    | null
+    | { [key: string]: Json | undefined }
+    | Json[]
 
 export interface Database {
   public: {
@@ -34,6 +34,14 @@ export interface Database {
           name?: string | null
           organiser?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "communities_organiser_fkey"
+            columns: ["organiser"]
+            referencedRelation: "organisers"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       donors: {
         Row: {
@@ -44,6 +52,7 @@ export interface Database {
           rep_email: string | null
           rep_name: string | null
           rep_number: string | null
+          website: string | null
         }
         Insert: {
           created_at?: string | null
@@ -53,6 +62,7 @@ export interface Database {
           rep_email?: string | null
           rep_name?: string | null
           rep_number?: string | null
+          website?: string | null
         }
         Update: {
           created_at?: string | null
@@ -62,7 +72,9 @@ export interface Database {
           rep_email?: string | null
           rep_name?: string | null
           rep_number?: string | null
+          website?: string | null
         }
+        Relationships: []
       }
       entrants: {
         Row: {
@@ -101,6 +113,7 @@ export interface Database {
           phone?: string | null
           physical_address?: string | null
         }
+        Relationships: []
       }
       entries: {
         Row: {
@@ -121,6 +134,20 @@ export interface Database {
           id?: number
           raffle_id?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "entries_entrant_id_fkey"
+            columns: ["entrant_id"]
+            referencedRelation: "entrants"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "entries_raffle_id_fkey"
+            columns: ["raffle_id"]
+            referencedRelation: "raffles"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       events: {
         Row: {
@@ -162,6 +189,20 @@ export interface Database {
           venue_name?: string | null
           video_link?: string | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "events_community_fkey"
+            columns: ["community"]
+            referencedRelation: "communities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_organiser_fkey"
+            columns: ["organiser"]
+            referencedRelation: "organisers"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       organisers: {
         Row: {
@@ -188,6 +229,7 @@ export interface Database {
           last_name?: string | null
           phone?: string | null
         }
+        Relationships: []
       }
       prize_types: {
         Row: {
@@ -208,6 +250,7 @@ export interface Database {
           type?: string | null
           type_display?: string | null
         }
+        Relationships: []
       }
       prizes: {
         Row: {
@@ -234,6 +277,20 @@ export interface Database {
           name?: string
           type?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "prizes_donor_fkey"
+            columns: ["donor"]
+            referencedRelation: "donors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "prizes_type_fkey"
+            columns: ["type"]
+            referencedRelation: "prize_types"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       raffles: {
         Row: {
@@ -266,6 +323,26 @@ export interface Database {
           run_by?: string | null
           winners?: number | null
         }
+        Relationships: [
+          {
+            foreignKeyName: "raffles_event_fkey"
+            columns: ["event"]
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "raffles_prize_fkey"
+            columns: ["prize"]
+            referencedRelation: "prizes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "raffles_winners_fkey"
+            columns: ["winners"]
+            referencedRelation: "winnings"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       winnings: {
         Row: {
@@ -286,6 +363,14 @@ export interface Database {
           entry_id?: number
           id?: number
         }
+        Relationships: [
+          {
+            foreignKeyName: "winnings_entry_id_fkey"
+            columns: ["entry_id"]
+            referencedRelation: "entries"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

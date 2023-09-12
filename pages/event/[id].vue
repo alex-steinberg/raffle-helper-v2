@@ -24,6 +24,11 @@
             <IonCardContent>
               <p>Prize: {{ raffle.prize?.description }}</p>
               <p>Available: {{ raffle.quantity }}</p>
+              <p>This is prize is provided courtesy of the great folks at <b @click="openWebpage(raffle.prize?.donors?.website)">{{raffle.prize?.donors?.name}}<IonIcon
+                  aria-hidden="true"
+                  slot="start"
+                  :ios="globeOutline"
+              ></IonIcon></b></p>
             </IonCardContent>
             <IonButton fill="clear" @click="go(`/raffle/${raffle.id}/enter`)">
               Enter Raffle
@@ -46,6 +51,7 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { Database } from "~~/types/database.types";
+import {globeOutline} from "ionicons/icons";
 
 const router = useIonRouter();
 
@@ -54,6 +60,8 @@ const client = useSupabaseClient<Database>();
 const go = (path: string) => {
   router.navigate(path);
 };
+
+const openWebpage = website => window.open(website, 'blank')
 
 const {
   params: { id },
@@ -89,6 +97,10 @@ let { data: events, error } = await useAsyncData("events", async () => {
             type,
             type_display,
             description
+          ),
+          donors (
+            name,
+            website
           )
         )
       )
