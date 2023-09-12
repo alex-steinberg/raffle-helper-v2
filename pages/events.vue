@@ -65,7 +65,7 @@ let { data: events, error } = await useAsyncData("events", async () => {
           )
         )
       )
-    `);
+    `).gt('end_time', new Date().toISOString());
   return data;
 });
 
